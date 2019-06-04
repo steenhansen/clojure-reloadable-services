@@ -22,14 +22,14 @@
 (defn start-cron [cron-job cron-info] 
   (let [ {cron-seconds :cron-seconds cron-run-always :cron-run-always } cron-info ] 
 
-	   (defn cron-func [] 
-	        (cron-job))											 					
+    (defn cron-func [] 
+         (cron-job))                 
 
   (let [ thread-pool (at-at/mk-pool) 
          scheduled-task (cron-type cron-run-always cron-seconds cron-func thread-pool) ]
-     					
-     					(defn remove-crons []
-					   			(try (at-at/stop-and-reset-pool! thread-pool)
+          
+          (defn remove-crons []
+           (try (at-at/stop-and-reset-pool! thread-pool)
               (catch Exception e (str " -- caught exception " (.getMessage e)))))
 
     scheduled-task)))   

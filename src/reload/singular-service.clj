@@ -16,7 +16,7 @@
          new-names (assoc-in name-list [service-key] new-service)    
          new-kills (assoc-in kill-list [service-key] kill-service) ]
        (reset! *service-name-list* new-names)   
-							(reset! *service-kill-list* new-kills)))
+       (reset! *service-kill-list* new-kills)))
 
 (defn remove-service [service-func kill-service]
   (let [ name-list @*service-name-list*
@@ -27,18 +27,18 @@
          (let [ old-service (service-key name-list)]
               (kill-service old-service )))
      (let [new-names (dissoc name-list service-key)]
-										(reset! *service-name-list* new-names))))
+          (reset! *service-name-list* new-names))))
 
 (defn kill-services []
    ( let [ name-list @*service-name-list*
            kill-list @*service-kill-list*  ]
-						   (for [[service-key service-ref] name-list
-												    :let [kill-service (service-key kill-list)] ]
-				        (kill-service service-ref))))
+         (for [[service-key service-ref] name-list
+                :let [kill-service (service-key kill-list)] ]
+            (kill-service service-ref))))
 
 
 
 
-															
+               
 
 
