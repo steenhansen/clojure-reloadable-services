@@ -36,6 +36,6 @@
 
 (defn cron-init[  cron-job cron-info]
   ( let [  scheduled-task  (start-cron  cron-job cron-info ) ]
-  ;  (remove-service cron-job kill-cron)    
+    (remove-service cron-job kill-cron)    
     (add-service  cron-job kill-cron scheduled-task)))
 
