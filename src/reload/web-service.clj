@@ -12,12 +12,15 @@
    :headers {"Content-Type" "text/html"}
    :body "request-handler-EXTRA" })
 
+
+; copied from https://github.com/panta82/clojure-webdev/blob/master/src/webdev/core.clj
 (def jetty-reloader #'ring-reload/reloader)
 
 ; copied from https://github.com/panta82/clojure-webdev/blob/master/src/webdev/core.clj
 (defn web-reload []
   (let [reload-jetty! (jetty-reloader ["src"] true)]
      (reload-jetty!)))
+
 
 (defn kill-web [web-ref] 
   (.stop web-ref))
